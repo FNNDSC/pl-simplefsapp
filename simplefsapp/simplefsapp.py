@@ -18,6 +18,7 @@ def touch(path):
     with open(path, 'a'):
         os.utime(path, None)
 
+
 class SimpleFSApp(ChrisApp):
     """
     Create file out.txt with the directory listing of the directory
