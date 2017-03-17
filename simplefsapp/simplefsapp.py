@@ -8,11 +8,10 @@
 #                        dev@babyMRI.org
 #
 
-import os, sys
+import os
 
 # import the Chris app superclass
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
-from base import ChrisApp
+from chrisapp.base import ChrisApp
 
 
 def touch(path):
