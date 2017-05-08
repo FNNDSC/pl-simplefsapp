@@ -35,7 +35,7 @@ Example
             fnndsc/pl-simplefsapp simplefsapp.py            \
             --dir /incoming /outgoing
 
-will save to teh container's ``/outgoing`` (i.e. the host's ``$(pwd)/out``):
+will save to the container's ``/outgoing`` (i.e. the host's ``$(pwd)/out``):
 
 .. code-block:: bash
 
