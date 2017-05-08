@@ -22,7 +22,7 @@ Assign an "input" directory to ``/incoming`` and an output directory to ``/outgo
             fnndsc/pl-simplefsapp simplefsapp.py            \
             --dir /incoming /outgoing
 
-The above will print the contents of the host ``/home`` dir to the file ``out.txt``. This file will be saved to the container's ``/outgoing`` which i turn has been volume mapped to the host ``$(pwd)/out`` directory. In addition, the ``/outgoing`` diretory will contain a zero-length file with name corresponding to each file in the ``/incoming`` dir.
+The above will print the contents of the host ``/home`` dir to the file ``out.txt``. This file will be saved to the container's ``/outgoing`` which in turn has been volume mapped to the host ``$(pwd)/out`` directory. In addition, the ``/outgoing`` diretory will contain a zero-length file with name corresponding to each file in the ``/incoming`` dir.
 
 Make sure that the host ``$(pwd)/out`` directory is world writable!
 
@@ -35,7 +35,7 @@ Example
             fnndsc/pl-simplefsapp simplefsapp.py            \
             --dir /incoming /outgoing
 
-will save to ``/outgoing``:
+will save to teh container's ``/outgoing`` (i.e. the host's ``$(pwd)/out``):
 
 .. code-block:: bash
 
