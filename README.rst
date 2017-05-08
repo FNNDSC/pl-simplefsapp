@@ -2,17 +2,26 @@
 pl-simplefsapp
 ##############
 
-# Abstract
+Abstract
+========
 
 This simple plugin demonstrates how to run the "File System" class of plugin in ChRIS. This type, FS, is used to create new top-level data trees that constitute the root node in a ChRIS Feed.
 
-# Run
+***
+Run
+***
 
-## Using <tt>docker run</tt>
+Using ``docker run``
+====================
 
-Assign an "input" directory to <tt>/incoming</tt> and an output directory to <tt>/outgoing</tt>
+Assign an "input" directory to ``/incoming`` and an output directory to ``/outgoing``
 
-```bash
-docker run -v /home:/incoming -v $(pwd)/out:/outgoing  fnndsc/pl-simplefsapp simplefsapp.py --dir /incoming /outgoing
-```
-   
+.. code-block:: bash
+
+    docker run -v /home:/incoming -v $(pwd)/out:/outgoing  fnndsc/pl-simplefsapp simplefsapp.py --dir /incoming /outgoing
+
+The above will print the contents of the host ``/home`` dir to the file ``out.txt`` and store in the container's ``/outgoing`` which has been volume mapped to the host ``$(pwd)/out`` directory.
+
+Make sure that the host ``$(pwd)/out`` directory is world writable!
+
+
