@@ -18,7 +18,9 @@ Assign an "input" directory to ``/incoming`` and an output directory to ``/outgo
 
 .. code-block:: bash
 
-    docker run -v /home:/incoming -v $(pwd)/out:/outgoing  fnndsc/pl-simplefsapp simplefsapp.py --dir /incoming /outgoing
+    docker run -v /home:/incoming -v $(pwd)/out:/outgoing   \
+            fnndsc/pl-simplefsapp simplefsapp.py            \
+            --dir /incoming /outgoing
 
 The above will print the contents of the host ``/home`` dir to the file ``out.txt`` and store in the container's ``/outgoing`` which has been volume mapped to the host ``$(pwd)/out`` directory.
 
