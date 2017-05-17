@@ -25,7 +25,7 @@ class SimpleFSApp(ChrisApp):
     given by the --dir argument.
     """
     AUTHORS         = 'FNNDSC (dev@babyMRI.org)'
-    SELFPATH        = os.path.abspath(__file__)
+    SELFPATH        = os.path.dirname(os.path.abspath(__file__))
     SELFEXEC        = os.path.basename(__file__)
     EXECSHELL       = 'python3'
     TITLE           = 'Simple chris fs app'
