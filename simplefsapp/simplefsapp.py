@@ -37,8 +37,8 @@ class SimpleFSApp(ChrisApp):
     VERSION         = '0.1'
 
     def define_parameters(self):
-        self.add_parameter('--dir', action='store', dest='dir', type=str, default='./',
-                          optional=True, help='look up directory')
+        self.add_argument('--dir', dest='dir', type=str, default='./', optional=True,
+                          help='look up directory')
 
     def run(self, options):
         str_outFile = os.path.join(options.outputdir, 'out.txt')
