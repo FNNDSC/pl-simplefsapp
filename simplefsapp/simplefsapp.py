@@ -36,11 +36,22 @@ class SimpleFSApp(ChrisApp):
     LICENSE         = 'Opensource (MIT)'
     VERSION         = '0.1'
 
+    # Fill out this with key-value output descriptive info (such as an output file path
+    # relative to the output dir) that you want to save to the output meta file when
+    # called with the --saveoutputmeta flag
+    OUTPUT_META_DICT = {'out': './out.txt'}
+
     def define_parameters(self):
+        """
+        Define the CLI arguments accepted by this plugin app.
+        """
         self.add_argument('--dir', dest='dir', type=str, default='./', optional=True,
                           help='look up directory')
 
     def run(self, options):
+        """
+        Define the code to be run by this plugin app.
+        """
         str_outFile = os.path.join(options.outputdir, 'out.txt')
         print(os.system('ls ' + options.dir + '>' + str_outFile))
 
