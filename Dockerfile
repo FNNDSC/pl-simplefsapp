@@ -11,4 +11,4 @@ WORKDIR $APPROOT
 
 RUN pip install -r requirements.txt
 
-CMD ["simplefsapp.py", "--json"]
+CMD ["simplefsapp.py", "--help"]
