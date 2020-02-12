@@ -29,7 +29,7 @@ class SimpleFSApp(ChrisApp):
     SELFEXEC        = os.path.basename(__file__)
     EXECSHELL       = 'python3'
     TITLE           = 'Simple chris fs app'
-    CATEGORY        = ''
+    CATEGORY        = 'copy'
     TYPE            = 'fs'
     DESCRIPTION     = 'A simple chris fs app demo'
     DOCUMENTATION   = 'http://wiki'
