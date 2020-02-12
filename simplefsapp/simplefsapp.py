@@ -53,8 +53,8 @@ class SimpleFSApp(ChrisApp):
         """
         Define the CLI arguments accepted by this plugin app.
         """
-        self.add_argument('--dir', dest='dir', type=ChrisApp.path, default='./',
-                          optional=True, help='look up directory')
+        self.add_argument('--dir', dest='dir', type=ChrisApp.path,
+                          optional=False, help='look up directory')
 
     def run(self, options):
         """
