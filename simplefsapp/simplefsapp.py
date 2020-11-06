@@ -35,7 +35,7 @@ class SimpleFSApp(ChrisApp):
     DESCRIPTION     = 'A simple chris fs app demo'
     DOCUMENTATION   = 'http://wiki'
     LICENSE         = 'Opensource (MIT)'
-    VERSION         = '0.11'
+    VERSION         = '0.21'
     MAX_NUMBER_OF_WORKERS = 1  # Override with integer value
     MIN_NUMBER_OF_WORKERS = 1  # Override with integer value
     MAX_CPU_LIMIT = ''  # Override with millicore value as string, e.g. '2000m'
