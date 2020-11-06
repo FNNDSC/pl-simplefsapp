@@ -9,6 +9,7 @@
 #
 
 import os
+import time
 
 # import the Chris app superclass
 from chrisapp.base import ChrisApp
@@ -55,11 +56,17 @@ class SimpleFSApp(ChrisApp):
         """
         self.add_argument('--dir', dest='dir', type=ChrisApp.path,
                           optional=False, help='look up directory')
+        self.add_argument('--sleepLength', dest='sleepLength', type=int,
+                          optional=True, default=0,
+                          help='time to sleep before performing plugin action')
 
     def run(self, options):
         """
         Define the code to be run by this plugin app.
         """
+        print('Sleeping for %s seconds' % options.sleepLength)
+        time.sleep(options.sleepLength)
+        
         str_outFile = os.path.join(options.outputdir, 'out.txt')
         print(os.system('ls ' + options.dir + '>' + str_outFile))
 
