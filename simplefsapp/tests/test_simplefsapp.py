@@ -18,9 +18,9 @@ class SimpleFSAppTests(TestCase):
         args = []
         if self.app.TYPE == 'ds':
             args.append('inputdir') # you may want to change this inputdir mock
-        args.append('outputdir')  # you may want to change this outputdir mock
+        args.append('/tmp')  # you may want to change this outputdir mock
         args.append('--dir')
-        args.append('cube/uploads')
+        args.append('./')
 
         # you may want to add more of your custom defined optional arguments to test
         # your app with
@@ -32,4 +32,4 @@ class SimpleFSAppTests(TestCase):
         self.app.run(options)
 
         # write your own assertions
-        self.assertEqual(options.outputdir, 'outputdir')
+        self.assertEqual(options.outputdir, '/tmp')
