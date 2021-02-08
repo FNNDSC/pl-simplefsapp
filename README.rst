@@ -1,68 +1,128 @@
-##############
 pl-simplefsapp
-##############
+================================
+
+.. image:: https://img.shields.io/docker/v/fnndsc/pl-simplefsapp
+    :target: https://hub.docker.com/r/fnndsc/pl-simplefsapp
+
+.. image:: https://img.shields.io/github/license/fnndsc/pl-simplefsapp
+    :target: https://github.com/FNNDSC/pl-simplefsapp/blob/master/LICENSE
+
+.. image:: https://github.com/FNNDSC/pl-simplefsapp/workflows/ci/badge.svg
+    :target: https://github.com/FNNDSC/pl-simplefsapp/actions
+
+
+.. contents:: Table of Contents
 
 
 Abstract
-********
+--------
 
-This simple plugin demonstrates how to run the "File System" class of plugin in ChRIS. This type, FS, is used to create new top-level data trees that constitute the root node in a ChRIS Feed.
+A simple ChRIS fs app demo. If called directly, i.e. from the command line, the input directory
+is an actual specification on an actual filesystem. If called from a client that is talking to
+CUBE, this input directory is interpreted to mean a location within swift storage, and is not a
+file system location.
 
-Run
-***
 
-Using ``docker run``
-====================
+Description
+-----------
 
-Assign an "input" directory to ``/incoming`` and an output directory to ``/outgoing``
+``simplefsapp`` is a simple ChRIS-based application that demonstrates how to run the "File System"
+class of plugin in ChRIS. This type, FS, is used to create new top-level data trees that constitute
+the root node in a ChRIS Feed.
 
-.. code-block:: bash
 
-    docker run -v /home:/incoming -v $(pwd)/out:/outgoing   \
-            fnndsc/pl-simplefsapp simplefsapp.py            \
-            --dir /incoming /outgoing
+Usage
+-----
+
+.. code::
+
+        python simplefsapp.py
+            [-h] [--help]
+            [--json]
+            [--man]
+            [--meta]
+            [--savejson <DIR>]
+            [-v <level>] [--verbosity <level>]
+            [--version]
+            <outputDir>
+            --dir <DIR>
+            [--sleepLength SECONDS]
+
 
 The above will print the contents of the host ``/home`` dir to the file ``out.txt``. This file will be saved to the container's ``/outgoing`` which in turn has been volume mapped to the host ``$(pwd)/out`` directory. In addition, the ``/outgoing`` diretory will contain a zero-length file with name corresponding to each file in the ``/incoming`` dir.
+Arguments
+~~~~~~~~~
 
-Make sure that the host ``$(pwd)/out`` directory is world writable!
+.. code::
 
-Example
-=======
+    [-h] [--help]
+    If specified, show help message and exit.
+    
+    [--json]
+    If specified, show json representation of app and exit.
+    
+    [--man]
+    If specified, print (this) man page and exit.
 
-.. code-block:: bash
-
-    docker run -v /usr/sbin:/incoming -v $(pwd)/out:/outgoing   \
-            fnndsc/pl-simplefsapp simplefsapp.py            \
-            --dir /incoming /outgoing
-
-will save to the container's ``/outgoing`` (i.e. the host's ``$(pwd)/out``):
-
-.. code-block:: bash
-
-  ls -la out/
-  total 20K
-  drwxrwxrwx 2 rudolph fnndsc   12K May  8 16:18 ./
-  drwxrwxr-x 3 rudolph fnndsc  4.0K May  8 15:45 ../
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 aa-remove-unknown
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 aa-status
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 accept
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 accessdb
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 acpid
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 addgnupghome
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 addgroup
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 add-shell
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 adduser
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 alsabat-test
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 alsactl
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 alsa-info
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 anacron
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 apparmor_status
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 applygnupgdefaults
-  -rw-r--r-- 1 nobody  nogroup    0 May  8 16:18 aptd
-  ...
+    [--meta]
+    If specified, print plugin meta data and exit.
+    
+    [--savejson <DIR>] 
+    If specified, save json representation file to DIR and exit. 
+    
+    [-v <level>] [--verbosity <level>]
+    Verbosity level for app. Not used currently.
+    
+    [--version]
+    If specified, print version number and exit. 
 
 
+Getting inline help is:
+
+.. code:: bash
+
+    docker run --rm fnndsc/pl-simplefsapp simplefsapp --man
+
+Run
+~~~
+
+You need you need to specify input and output directories using the `-v` flag to `docker run`.
 
 
+.. code:: bash
+
+    docker run --rm -u $(id -u) -v $(pwd)/out:/outgoing      \
+        fnndsc/pl-simplefsapp simplefsapp /outgoing --dir <DIR>
+
+The above will print the contents of <DIR> to the file ``out.txt``. This file
+will be saved to the container's ``/outgoing`` which in turn has been volume mapped to the host
+``$(pwd)/out`` directory. In addition, the ``/outgoing`` diretory will contain zero-length files
+with name corresponding to each file in <DIR>.
 
 
+Development
+-----------
+
+Build the Docker container:
+
+.. code:: bash
+
+    docker build -t local/pl-simplefsapp .
+
+Run unit tests:
+
+.. code:: bash
+
+    docker run --rm local/pl-simplefsapp nosetests
+
+Examples
+--------
+
+.. code:: bash
+
+    docker run --rm -v $(pwd)/out:/outgoing fnndsc/pl-simplefsapp    \
+        simplefsapp /outgoing --dir '~/uploads,/tmp'
+
+
+.. image:: https://raw.githubusercontent.com/FNNDSC/cookiecutter-chrisapp/master/doc/assets/badge/light.png
+    :target: https://chrisstore.co
