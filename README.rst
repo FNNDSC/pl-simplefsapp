@@ -49,7 +49,6 @@ Usage
             [--sleepLength SECONDS]
 
 
-The above will print the contents of the host ``/home`` dir to the file ``out.txt``. This file will be saved to the container's ``/outgoing`` which in turn has been volume mapped to the host ``$(pwd)/out`` directory. In addition, the ``/outgoing`` diretory will contain a zero-length file with name corresponding to each file in the ``/incoming`` dir.
 Arguments
 ~~~~~~~~~
 
@@ -75,6 +74,15 @@ Arguments
     
     [--version]
     If specified, print version number and exit. 
+    
+    <outputDir> 
+    Output directory.
+        
+    --dir <DIR> 
+    Required, it's a string representing a comma-separated list of one or more directories.
+        
+    [--sleepLength SECONDS]
+    If specified, the plugin sleeps before performing any action.
 
 
 Getting inline help is:
@@ -121,7 +129,7 @@ Examples
 .. code:: bash
 
     docker run --rm -v $(pwd)/out:/outgoing fnndsc/pl-simplefsapp    \
-        simplefsapp /outgoing --dir '~/uploads,/tmp'
+        simplefsapp /outgoing --dir './,/tmp'
 
 
 .. image:: https://raw.githubusercontent.com/FNNDSC/cookiecutter-chrisapp/master/doc/assets/badge/light.png
