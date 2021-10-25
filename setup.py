@@ -6,7 +6,7 @@ with open(path.join(path.dirname(path.abspath(__file__)), 'README.rst')) as f:
 
 setup(
     name             = 'simplefsapp',
-    version          = '1.0.0',
+    version          = '1.0.1',
     description      = 'A simple ChRIS fs app demo',
     long_description = readme,
     author           = 'FNNDSC',
